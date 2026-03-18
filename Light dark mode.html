@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theme Toggle</title>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f1f1f;
+    }
+
+    [data-theme='dark'] {
+      --bg: #121212;
+      --text: #eeeeee;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body id="page">
+  <div class="container">
+    <h2>Light / Dark Mode</h2>
+    <button id="themeBtn">🌙</button>
+  </div>
+
+  <script>
+    const state = {
+      theme: localStorage.getItem('theme') || 'light'
+    };
+
+    const page = document.getElementById('page');
+    const themeBtn = document.getElementById('themeBtn');
+
+    const render = () => {
+      page.setAttribute('data-theme', state.theme);
+
+      if (state.theme === 'light') {
+        themeBtn.textContent = '🌙';
+      } else {
+        themeBtn.textContent = '☀️';
+      }
+    };
+
+    const saveState = () => {
+      localStorage.setItem('theme', state.theme);
+    };
+
+    themeBtn.addEventListener('click', () => {
+      state.theme = state.theme === 'light' ? 'dark' : 'light';
+      saveState();
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
