@@ -1,4 +1,4 @@
-/* Background image */
+/* Background */
 body {
   font-family: Arial, sans-serif;
   background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
@@ -49,9 +49,7 @@ h1 {
   border-radius: 5px;
 }
 
-#addBtn:hover {
-  background-color: #218838;
-}
+#addBtn:hover { background-color: #218838; }
 
 /* Task Cards */
 .task-list-card {
@@ -65,54 +63,50 @@ h1 {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+/* Left side: task info */
 .task-info {
   display: flex;
   flex-direction: column;
 }
 
+/* Task name */
 .task-name {
   font-weight: 500;
   font-size: 16px;
 }
 
 /* Priority Badges */
-.priority-badge.high {
-  background-color: red;
-  color: white;
-  font-weight: bold;
-  padding: 3px 6px;
-  border-radius: 5px;
-  margin-top: 4px;
-  width: fit-content;
-}
-
-.priority-badge.low {
-  background-color: green;
-  color: white;
-  font-weight: bold;
-  padding: 3px 6px;
-  border-radius: 5px;
-  margin-top: 4px;
-  width: fit-content;
-}
+.priority-badge.high { background-color: red; color: white; font-weight: bold; padding: 3px 6px; border-radius: 5px; margin-top: 4px; width: fit-content; }
+.priority-badge.low { background-color: green; color: white; font-weight: bold; padding: 3px 6px; border-radius: 5px; margin-top: 4px; width: fit-content; }
 
 /* Due Date */
-.due-date {
-  font-size: 12px;
-  color: #555;
-  margin-top: 2px;
+.due-date { font-size: 12px; color: #555; margin-top: 2px; }
+
+/* Right side: buttons container (horizontal) */
+.task-buttons {
+  display: flex;
+  gap: 5px;
 }
 
-/* Delete Button */
-.delete-btn {
-  background-color: red;
-  color: white;
+/* Buttons styling */
+.delete-btn, .edit-btn, .complete-btn {
   border: none;
-  border-radius: 5px;
+  color: white;
   padding: 5px 10px;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
 }
 
-.delete-btn:hover {
-  background-color: darkred;
-}
+.delete-btn { background-color: red; }
+.delete-btn:hover { background-color: darkred; }
+
+.edit-btn { background-color: #ffc107; color: black; }
+.edit-btn:hover { background-color: #e0a800; }
+
+.complete-btn { background-color: #17a2b8; }
+.complete-btn:hover { background-color: #117a8b; }
+
+/* Completed task */
+.completed .task-name { text-decoration: line-through; color: gray; }
