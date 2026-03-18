@@ -2,6 +2,7 @@
 const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
+const searchInput = document.getElementById("searchInput");
 
 // Function to add a task
 function addTask() {
@@ -30,9 +31,28 @@ function addTask() {
 // Add task on button click
 addBtn.addEventListener("click", addTask);
 
-// Optional: add task on Enter key
-taskInput.addEventListener("keypress", function(e){
-    if(e.key === "Enter") {
+// Add task on Enter key
+taskInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
         addTask();
     }
 });
+
+// SEARCH FUNCTION
+function searchTasks() {
+    const filter = searchInput.value.toLowerCase();
+    const tasks = taskList.getElementsByTagName("li");
+
+    for (let i = 0; i < tasks.length; i++) {
+        const text = tasks[i].firstChild.textContent.toLowerCase();
+
+        if (text.includes(filter)) {
+            tasks[i].style.display = "flex";
+        } else {
+            tasks[i].style.display = "none";
+        }
+    }
+}
+
+// Listen for typing in search box
+searchInput.addEventListener("keyup", searchTasks);
