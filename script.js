@@ -1,26 +1,23 @@
-// Select elements
+// ===== Select elements =====
 const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
 const prioritySelect = document.getElementById("prioritySelect");
 const dueDateInput = document.getElementById("dueDateInput");
 
-// Add task function
+// ===== Add task function =====
 function addTask() {
   const taskText = taskInput.value.trim();
   const priority = prioritySelect.value;
   const dueDate = dueDateInput.value;
 
-  if (!taskText) {
-    alert("Please enter a task!");
-    return;
-  }
+  if (!taskText) { alert("Please enter a task!"); return; }
 
   // Create task card
   const card = document.createElement("div");
   card.className = "task-list-card";
 
-  // Task info
+  // Task info container (left side)
   const taskInfo = document.createElement("div");
   taskInfo.className = "task-info";
 
@@ -40,15 +37,40 @@ function addTask() {
   taskInfo.appendChild(priorityBadge);
   taskInfo.appendChild(dueDateSpan);
 
+  // Buttons container (right side, horizontal)
+  const btnContainer = document.createElement("div");
+  btnContainer.className = "task-buttons";
+
   // Delete button
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-btn";
   deleteBtn.textContent = "Delete";
   deleteBtn.onclick = () => card.remove();
 
-  card.appendChild(taskInfo);
-  card.appendChild(deleteBtn);
+  // Edit button
+  const editBtn = document.createElement("button");
+  editBtn.className = "edit-btn";
+  editBtn.textContent = "Edit";
+  editBtn.onclick = () => {
+    const newTask = prompt("Edit task:", taskName.textContent);
+    if (newTask) taskName.textContent = newTask;
+  };
 
+  // Complete button
+  const completeBtn = document.createElement("button");
+  completeBtn.className = "complete-btn";
+  completeBtn.textContent = "✓";
+  completeBtn.onclick = () => card.classList.toggle("completed");
+
+  // Append buttons
+  btnContainer.appendChild(editBtn);
+  btnContainer.appendChild(deleteBtn);
+  btnContainer.appendChild(completeBtn);
+
+  card.appendChild(taskInfo);
+  card.appendChild(btnContainer);
+
+  // Add card to task list
   taskList.appendChild(card);
 
   // Clear inputs
@@ -57,6 +79,8 @@ function addTask() {
   dueDateInput.value = "";
 }
 
-// Event listeners
+// ===== Event listeners =====
 addBtn.addEventListener("click", addTask);
-taskInput.addEventListener("keypress", e => { if(e.key === "Enter") addTask(); });
+taskInput.addEventListener("keypress", e => {
+  if (e.key === "Enter") addTask();
+});
